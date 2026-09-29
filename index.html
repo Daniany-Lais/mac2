@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ondas Sonoras | Projeto de Física</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       CABEÇALHO FIXO
+       ============================================================ -->
+  <header class="cabecalho">
+    <a href="#inicio" class="logo">🔊 Ondas Sonoras</a>
+
+    <button class="botao-menu" id="botaoMenu" aria-label="Abrir menu">☰</button>
+
+    <nav class="menu" id="menu">
+      <a href="#inicio">Início</a>
+      <a href="#ondas">O que são?</a>
+      <a href="#sons">Sons do Dia a Dia</a>
+      <a href="#visualizador">Visualizador</a>
+      <a href="#grafico">Níveis de Ruído</a>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       SEÇÃO 1 — CAPA (HERO)
+       ============================================================ -->
+  <section id="inicio" class="hero">
+    <div class="hero-texto">
+      <p class="etiqueta">Projeto de Física • 2º ano do Ensino Médio</p>
+      <h1>Ondas <span class="destaque">Sonoras</span></h1>
+      <p class="subtitulo">
+        Como o som nasce, como ele viaja e como ele aparece
+        no nosso dia a dia — do barulho do liquidificador até a sirene da rua.
+      </p>
+      <div class="hero-botoes">
+        <a href="#sons" class="botao botao-primario">▶ Ouvir os sons</a>
+        <a href="#ondas" class="botao botao-secundario">Aprender mais</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <canvas id="canvasOnda"></canvas>
+      <p class="legenda-canvas">Representação de uma onda sonora se propagando</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 2 — O QUE SÃO ONDAS SONORAS
+       ============================================================ -->
+  <section id="ondas" class="secao">
+    <h2 class="titulo-secao">O que são ondas sonoras?</h2>
+    <p class="texto-secao">
+      O som é uma <strong>onda mecânica</strong>: ele nasce de uma vibração e precisa
+      de um meio material (ar, água ou sólido) para se espalhar. No vácuo, o som não existe!
+    </p>
+
+    <div class="grade-cards">
+      <article class="card">
+        <div class="icone">📢</div>
+        <h3>Som é vibração</h3>
+        <p>Quando algo vibra, ele empurra as moléculas de ar ao redor, criando
+          regiões de compressão e rarefação que se espalham como ondas.</p>
+      </article>
+
+      <article class="card">
+        <div class="icone">🌊</div>
+        <h3>Precisa de um meio</h3>
+        <p>Diferente da luz, o som não viaja no vácuo. É por isso que no espaço
+          ninguém conseguiria ouvir uma explosão.</p>
+      </article>
+
+      <article class="card">
+        <div class="icone">🎵</div>
+        <h3>Frequência (Hz)</h3>
+        <p>A frequência define se o som é <strong>grave</strong> ou <strong>agudo</strong>.
+          O ouvido humano escuta entre 20 Hz e 20.000 Hz.</p>
+      </article>
+
+      <article class="card">
+        <div class="icone">📏</div>
+        <h3>Amplitude e volume</h3>
+        <p>A amplitude da onda está ligada ao volume do som, que medimos em
+          <strong>decibéis (dB)</strong>. Mais amplitude = som mais alto.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 3 — SONS DO DIA A DIA (7 botões)
+       ============================================================ -->
+  <section id="sons" class="secao secao-escura">
+    <h2 class="titulo-secao">Sons do Dia a Dia</h2>
+    <p class="texto-secao">
+      Clique em cada botão e escute o ruído. Todos os sons são
+      <strong>criados pelo próprio navegador</strong> com a Web Audio API —
+      não precisa baixar nenhum arquivo de áudio! Cada som toca por 60 segundos. 🎧
+    </p>
+
+    <div class="grade-sons">
+      <button class="botao-som" data-som="buzina" data-db="110">
+        <span class="emoji">🚗</span>
+        <span class="nome">Buzina</span>
+        <span class="db">110 dB</span>
+      </button>
+
+      <button class="botao-som" data-som="liquidificador" data-db="88">
+        <span class="emoji">🥤</span>
+        <span class="nome">Liquidificador</span>
+        <span class="db">88 dB</span>
+      </button>
+
+      <button class="botao-som" data-som="microondas" data-db="70">
+        <span class="emoji">🍲</span>
+        <span class="nome">Micro-ondas</span>
+        <span class="db">70 dB</span>
+      </button>
+
+      <button class="botao-som" data-som="cortador" data-db="95">
+        <span class="emoji">🌱</span>
+        <span class="nome">Cortador de grama</span>
+        <span class="db">95 dB</span>
+      </button>
+
+      <button class="botao-som" data-som="aspirador" data-db="75">
+        <span class="emoji">🧹</span>
+        <span class="nome">Aspirador de pó</span>
+        <span class="db">75 dB</span>
+      </button>
+
+      <button class="botao-som" data-som="sirene" data-db="120">
+        <span class="emoji">🚑</span>
+        <span class="nome">Sirene</span>
+        <span class="db">120 dB</span>
+      </button>
+
+      <button class="botao-som" data-som="telefone" data-db="80">
+        <span class="emoji">☎️</span>
+        <span class="nome">Telefone tocando</span>
+        <span class="db">80 dB</span>
+      </button>
+    </div>
+
+    <div class="area-parar">
+      <button id="botaoParar" class="botao botao-parar">⏹ Parar o som</button>
+      <p id="avisoSom" class="aviso-som">🔇 Nenhum som tocando</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 4 — VISUALIZADOR GRANDE DE ONDAS
+       ============================================================ -->
+  <section id="visualizador" class="secao">
+    <h2 class="titulo-secao">Visualizador de Ondas</h2>
+    <p class="texto-secao">
+      Esta é a representação visual do som que está tocando.
+      Cada pico e cada vale corresponde às vibrações que chegam ao seu ouvido. 🎧
+    </p>
+
+    <div class="visualizador-caixa">
+      <canvas id="canvasVisualizador"></canvas>
+
+      <div class="visualizador-info">
+        <span id="somAtual" class="som-atual">🔇 Nenhum som</span>
+        <span id="tempoAtual" class="tempo-atual">--</span>
+      </div>
+    </div>
+
+    <div class="barras-frequencia">
+      <div class="barra-freq" id="barraFreq0"></div>
+      <div class="barra-freq" id="barraFreq1"></div>
+      <div class="barra-freq" id="barraFreq2"></div>
+      <div class="barra-freq" id="barraFreq3"></div>
+      <div class="barra-freq" id="barraFreq4"></div>
+      <div class="barra-freq" id="barraFreq5"></div>
+      <div class="barra-freq" id="barraFreq6"></div>
+      <div class="barra-freq" id="barraFreq7"></div>
+      <div class="barra-freq" id="barraFreq8"></div>
+      <div class="barra-freq" id="barraFreq9"></div>
+    </div>
+    <p class="legenda-visualizador">
+      ⬆ Estas barras mostram a intensidade das diferentes frequências do som.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 5 — GRÁFICO DE NÍVEIS DE RUÍDO
+       ============================================================ -->
+  <section id="grafico" class="secao secao-escura">
+    <h2 class="titulo-secao">Níveis de Ruído (em decibéis)</h2>
+    <p class="texto-secao">
+      Quanto maior a barra, mais alto é o som. A partir de <strong>85 dB</strong>
+      o ouvido humano já começa a correr risco de danos.
+    </p>
+
+    <div class="grafico" id="grafico"></div>
+
+    <div class="legenda-grafico">
+      <span><i class="ponto seguro"></i> Seguro (até 70 dB)</span>
+      <span><i class="ponto atencao"></i> Atenção (70–85 dB)</span>
+      <span><i class="ponto perigo"></i> Perigo (acima de 85 dB)</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RODAPÉ
+       ============================================================ -->
+  <footer class="rodape">
+    <p>Projeto <strong>Ondas Sonoras</strong> feito por <strong>Daniany</strong> 💚</p>
+    <p class="rodape-pequeno">2º ano do Ensino Médio • Feito com HTML, CSS e JavaScript</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
